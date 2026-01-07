@@ -320,3 +320,50 @@ pip install -e .
 - ✅ **Memory Management**: Improved stability and cleanup
 - ✅ **JSON Script Display**: Clean script output format
 
+## ☁️ Deploying to Streamlit Community Cloud
+
+### Important Notes
+
+⚠️ **Voice Cloning (Chatterbox) Limitations on Cloud:**
+- Chatterbox TTS requires local installation and won't work on Streamlit Community Cloud
+- **Recommended**: Use **Kokoro TTS** for cloud deployments (works perfectly!)
+- For voice cloning, run the app locally
+
+### Deployment Steps
+
+1. **Push your code to GitHub:**
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/Sharunikaa/ai-podcast-generation.git
+git push -u origin main
+```
+
+2. **Deploy on Streamlit:**
+   - Go to [share.streamlit.io](https://share.streamlit.io)
+   - Click "New app"
+   - Select your repository: `Sharunikaa/ai-podcast-generation`
+   - Main file path: `app.py`
+   - Click "Deploy"
+
+3. **Add API Keys in Streamlit Cloud:**
+   - In Streamlit Cloud dashboard, go to your app settings
+   - Add secrets (optional - users can also enter in UI):
+   ```toml
+   GROQ_API_KEY = "your_groq_key_here"
+   FIRECRAWL_API_KEY = "your_firecrawl_key_here"
+   ```
+
+4. **Users can enter keys in the UI** - no secrets file needed!
+
+### Cloud vs Local
+
+| Feature | Cloud (Streamlit) | Local |
+|---------|------------------|-------|
+| Kokoro TTS | ✅ Works | ✅ Works |
+| Chatterbox Voice Cloning | ❌ Not available | ✅ Works |
+| Text Input | ✅ Works | ✅ Works |
+| Web Scraping | ✅ Works | ✅ Works |
+| API Key Entry | ✅ In UI | ✅ In UI or .env |
+

@@ -32,8 +32,8 @@ uv.lock
 # Environment Variables
 .env
 
-# Streamlit
-.streamlit/
+# Streamlit (keep config for deployment, ignore secrets)
+.streamlit/secrets.toml
 
 # Output Files
 outputs/

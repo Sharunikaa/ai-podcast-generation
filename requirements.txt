@@ -1,11 +1,8 @@
 streamlit>=1.28.0
 python-dotenv>=1.1.1
 crewai>=0.193.2
-kokoro>=0.9.4
+kokoro-onnx>=0.1.0
 soundfile>=0.12.1
 numpy>=1.24.0
 firecrawl-py>=4.3.6
-torch>=2.0.0
-torchaudio>=2.0.0
-chatterbox-tts>=0.1.2
 

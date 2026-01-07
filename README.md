@@ -38,7 +38,20 @@ cd ai-podcast-generation
 pip install -r requirements.txt
 ```
 
-**Note:** This automatically installs both Kokoro and Chatterbox TTS engines!
+3. **(Optional) For Voice Cloning - Install Chatterbox:**
+
+Voice cloning requires Python 3.9-3.11 (not 3.12+):
+
+```bash
+# Install chatterbox from PyPI
+pip install chatterbox-tts
+
+# Or install from source
+cd ../chatterbox
+pip install -e .
+```
+
+**Note:** Kokoro TTS is installed automatically and works on all Python versions!
 
 ### Running the App
 
@@ -314,43 +327,49 @@ pip install -e .
 
 ## ☁️ Cloud Deployment
 
-### Quick Deploy Options
+### ✅ Deploy to Streamlit Community Cloud
 
-| Platform | RAM | Voice Cloning | Best For |
-|----------|-----|---------------|----------|
-| **Streamlit Cloud** | 1GB | ❌ | Quick demos (Kokoro only) |
-| **Hugging Face Spaces** | 16GB | ✅ | **RECOMMENDED** - Full features |
-| **Railway** | 8GB | ✅ | Production apps |
-| **Render** | 4GB+ | ✅ | Professional hosting |
+**The app is now optimized for Streamlit Cloud deployment!**
 
-### 🚀 Quick Start: Deploy to Hugging Face Spaces (Recommended)
+| Feature | Streamlit Cloud | Local |
+|---------|----------------|-------|
+| Kokoro TTS | ✅ Works | ✅ Works |
+| Text Input | ✅ Works | ✅ Works |
+| Web Scraping | ✅ Works | ✅ Works |
+| Script Generation | ✅ Works | ✅ Works |
+| Voice Cloning (Chatterbox) | ❌ Not available* | ✅ Works |
 
-**For full voice cloning support with 16GB free RAM:**
+*Voice cloning requires Python 3.9 and 2-4GB RAM, which Streamlit Cloud doesn't support.
+
+### 🚀 Quick Deploy to Streamlit Cloud
 
 1. **Push to GitHub:**
 ```bash
 git add .
-git commit -m "Deploy to cloud"
+git commit -m "Deploy to Streamlit Cloud"
 git push origin main
 ```
 
-2. **Create HF Space:**
-   - Go to https://huggingface.co/spaces
-   - Click "Create new Space"
-   - Choose **Streamlit** SDK
-   - Connect your GitHub repo or upload files
-   - Select **CPU basic** (free, 16GB RAM)
+2. **Deploy:**
+   - Go to https://share.streamlit.io
+   - Click "New app"
+   - Repository: `YOUR_USERNAME/ai-podcast-generation`
+   - Branch: `main`
+   - Main file: `app.py`
+   - Click "Deploy"
 
-3. **Done!** Your app will be live with full voice cloning support 🎉
+3. **Done!** Your app will be live in 5-10 minutes 🎉
 
-### 📖 Full Deployment Guide
+### 🎤 Want Voice Cloning?
 
-For detailed instructions on all platforms, see **[DEPLOYMENT.md](DEPLOYMENT.md)**
+For voice cloning support, deploy locally or use platforms with Python 3.9-3.11 support:
 
-### ⚠️ Important Notes
+| Platform | RAM | Voice Cloning | Cost |
+|----------|-----|---------------|------|
+| **Local** | Unlimited | ✅ Best | Free |
+| **Hugging Face Spaces** | 16GB | ✅ Works | Free |
+| **Railway** | 8GB | ✅ Works | $5/mo |
+| **Render** | 4GB+ | ✅ Works | $7/mo |
 
-- **Streamlit Community Cloud**: Only 1GB RAM - use Kokoro TTS only
-- **Hugging Face Spaces**: 16GB RAM - perfect for voice cloning! ✅
-- **Railway/Render**: 4-8GB RAM - voice cloning works
-- **Local**: Best performance, unlimited resources
+See **[DEPLOYMENT.md](DEPLOYMENT.md)** for full deployment guide.
 

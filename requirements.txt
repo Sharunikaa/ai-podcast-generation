@@ -7,4 +7,5 @@ numpy>=1.24.0
 firecrawl-py>=4.3.6
 torch>=2.0.0
 torchaudio>=2.0.0
+chatterbox-tts>=0.1.2
 

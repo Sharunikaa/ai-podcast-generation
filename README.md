@@ -35,15 +35,10 @@ cd ai-podcast-generation
 
 2. **Install dependencies:**
 ```bash
-pip install -e .
+pip install -r requirements.txt
 ```
 
-3. **(Optional) Install Chatterbox for voice cloning:**
-```bash
-cd ../chatterbox
-pip install -e .
-cd ../ai-podcast-generation
-```
+**Note:** This automatically installs both Kokoro and Chatterbox TTS engines!
 
 ### Running the App
 
@@ -202,19 +197,16 @@ The app generates:
 
 ### TTS Not Available
 
-**Kokoro TTS:**
+**All TTS engines should be installed automatically. If not:**
 ```bash
-pip install kokoro>=0.9.4
+pip install -r requirements.txt
 ```
 
-**Chatterbox TTS (Voice Cloning):**
+**Or install individually:**
 ```bash
-# Install from the chatterbox directory
-cd ../chatterbox
-pip install -e .
-
-# Or install dependencies manually
-pip install torch torchaudio
+pip install kokoro>=0.9.4
+pip install chatterbox-tts>=0.1.2
+pip install torch>=2.0.0 torchaudio>=2.0.0
 ```
 
 ### Memory Issues
@@ -320,50 +312,45 @@ pip install -e .
 - ✅ **Memory Management**: Improved stability and cleanup
 - ✅ **JSON Script Display**: Clean script output format
 
-## ☁️ Deploying to Streamlit Community Cloud
+## ☁️ Cloud Deployment
 
-### Important Notes
+### Quick Deploy Options
 
-⚠️ **Voice Cloning (Chatterbox) Limitations on Cloud:**
-- Chatterbox TTS requires local installation and won't work on Streamlit Community Cloud
-- **Recommended**: Use **Kokoro TTS** for cloud deployments (works perfectly!)
-- For voice cloning, run the app locally
+| Platform | RAM | Voice Cloning | Best For |
+|----------|-----|---------------|----------|
+| **Streamlit Cloud** | 1GB | ❌ | Quick demos (Kokoro only) |
+| **Hugging Face Spaces** | 16GB | ✅ | **RECOMMENDED** - Full features |
+| **Railway** | 8GB | ✅ | Production apps |
+| **Render** | 4GB+ | ✅ | Professional hosting |
 
-### Deployment Steps
+### 🚀 Quick Start: Deploy to Hugging Face Spaces (Recommended)
 
-1. **Push your code to GitHub:**
+**For full voice cloning support with 16GB free RAM:**
+
+1. **Push to GitHub:**
 ```bash
-git init
 git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/Sharunikaa/ai-podcast-generation.git
-git push -u origin main
+git commit -m "Deploy to cloud"
+git push origin main
 ```
 
-2. **Deploy on Streamlit:**
-   - Go to [share.streamlit.io](https://share.streamlit.io)
-   - Click "New app"
-   - Select your repository: `Sharunikaa/ai-podcast-generation`
-   - Main file path: `app.py`
-   - Click "Deploy"
+2. **Create HF Space:**
+   - Go to https://huggingface.co/spaces
+   - Click "Create new Space"
+   - Choose **Streamlit** SDK
+   - Connect your GitHub repo or upload files
+   - Select **CPU basic** (free, 16GB RAM)
 
-3. **Add API Keys in Streamlit Cloud:**
-   - In Streamlit Cloud dashboard, go to your app settings
-   - Add secrets (optional - users can also enter in UI):
-   ```toml
-   GROQ_API_KEY = "your_groq_key_here"
-   FIRECRAWL_API_KEY = "your_firecrawl_key_here"
-   ```
+3. **Done!** Your app will be live with full voice cloning support 🎉
 
-4. **Users can enter keys in the UI** - no secrets file needed!
+### 📖 Full Deployment Guide
 
-### Cloud vs Local
+For detailed instructions on all platforms, see **[DEPLOYMENT.md](DEPLOYMENT.md)**
 
-| Feature | Cloud (Streamlit) | Local |
-|---------|------------------|-------|
-| Kokoro TTS | ✅ Works | ✅ Works |
-| Chatterbox Voice Cloning | ❌ Not available | ✅ Works |
-| Text Input | ✅ Works | ✅ Works |
-| Web Scraping | ✅ Works | ✅ Works |
-| API Key Entry | ✅ In UI | ✅ In UI or .env |
+### ⚠️ Important Notes
+
+- **Streamlit Community Cloud**: Only 1GB RAM - use Kokoro TTS only
+- **Hugging Face Spaces**: 16GB RAM - perfect for voice cloning! ✅
+- **Railway/Render**: 4-8GB RAM - voice cloning works
+- **Local**: Best performance, unlimited resources
 
